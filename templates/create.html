@@ -19,10 +19,24 @@
 
    <!-- Our own style sheet -->
    <link rel="stylesheet" href="/static/css/memos.css" />
+   <!-- date picker -->
+
+     <meta charset="utf-8">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
 
 
 </head>
 <body>
+ 
 <div class="container">
 <h1>Create a Memo</h1>
 
@@ -37,18 +51,30 @@
   {% endif %}
 {% endwith %}
 
-<form method="PUT" action="_create">
+<form method="POST" action="_create">
 <div class="row">
     <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="Date" value=""/>
+   <p>Date: <input type="text" id="datepicker" name= 'date'></p>
   </div>
   <div class="col-md-10">
     <input type="text" class="form-control"
       name="Memo" value="Memo" />
   </div>
+  <div class="col-md-12">
+  <a href="/index">back</a>
+  
+  <button type = 'submit' id = "add" value = "add" >Add </button>
+  </div>
+
  </div>
 </form>
 </div> 
+<script>
+
+
+
+
+
+</script>
 </body>
 </html>

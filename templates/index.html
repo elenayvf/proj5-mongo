@@ -37,23 +37,42 @@
 {% endwith %}
 
 <h1>Memos</h1>
+<!-- button/linke to make a new Memo-->
+<a href="/create">Create New Memo</a>
+
 
 {% if session.memos %}
     {% for memo in session.memos %}
+
   <div class="memo">
+  <form method= "POST" action = "_delete" >
   <div class="row">
   <div class="col-md-2">
-    {{ memo.date | humanize }}
+   	{{ memo.date | humanize }}
   </div>
   <div class="col-md-10">
-    {{ memo.text }}
+	<input type = 'hidden' name = 'text'> {{ memo.text }} </input>
   </div>
+  <input type='hidden' name = 'ObjectID' value= " {{memo._id}} ">
+  </input>
+  <!--add option to delete the memo-->
+  <button type ='submit' value = "remove" >Delete</button>
+
   </div> <!-- row -->
   </div> <!-- memo -->
+  </form>
   {% endfor %}
 {% else %}
-  <p>No memos for you. </p>  
-{% endif %}
+  <p>No memos for you. </p>
+{% endif %}  
+<script>
+
+
+
+
+
+
+</script>
 
  
 
