@@ -26,8 +26,10 @@ import arrow # Replacement for datetime, based on moment.js
 import datetime # But we may still need time
 from dateutil import tz	 # For interpreting local times
 
+
 # Mongo database
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 
 ###
@@ -124,9 +126,12 @@ def humanize_arrow_date( date ):
 
 @app.route( '/_delete', methods= ['POST'])
 def remove_memo():
-	ID = request.form['ObjectID']
-	
-	result = collection.delete_many({'_id':ID})
+	string_id = request.form["ObjectID"]
+	string_id = string_id.strip()
+	object_id = ObjectId(string_id)
+	record = collection.find_one({"_id": object_id})
+
+	collection.remove(record)
 	
 	flask.session['memos'] = get_memos()
 	return flask.render_template("index.html")
